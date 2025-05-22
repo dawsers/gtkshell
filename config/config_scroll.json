@@ -1,0 +1,28 @@
+[
+{
+    "monitor": "HDMI-A-1",
+    "anchor": "top",
+    "left-box": {
+        "left": [ "scroll-workspaces", "scroll-scroller", "scroll-trails", "scroll-submap", "scroll-client-title" ],
+        "right": [ "mpris" ]
+    },
+    "center-box": {
+        "left": [ "clock"]
+    },
+    "right-box": {
+        "left": [ "package-updates", "idle-inhibitor", "scroll-keyboard-layout" ],
+        "right": [ "weather", "screenshot", "cpu-graph", "mem-graph", "gpu-graph", "network", "speaker", "microphone", "notifications", "systray" ]
+    }
+},
+{
+    "monitor": "DP-2",
+    "anchor": "top",
+    "left-box": {
+        "left": [ "scroll-workspaces" ]
+    },
+    "center-box": {
+        "left": [ "clock"]
+    }
+}
+]
+

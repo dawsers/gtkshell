@@ -1,0 +1,6 @@
+Debug/
+Release/
+gtkshell
+.cache/
+compile_commands.json
+gtkshell-release

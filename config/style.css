@@ -1,0 +1,612 @@
+@define-color wb-background #000000;
+@define-color wb-background-alt #373b41;
+@define-color wb-foreground #c5c8c6;
+@define-color wb-primary #f0c671;
+@define-color wb-secondary #8abeb7;
+@define-color wb-alert #a54242;
+@define-color wb-disabled #707880;
+@define-color wb-green #00b35b;
+@define-color wb-blue #0092e6;
+@define-color wb-red #eb4d4b;
+
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: "SF Pro Display", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 10pt;
+    font-weight: bold;
+}
+
+window.bar {
+    background: @wb_background;
+    border-bottom: 0px solid @wb-background;
+    color: @wb_foreground;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+box {
+    background: @wb_background;
+}
+
+button {
+    background: @wb-background;
+    /* Use box-shadow instead of border so the text isn't offset */
+    /*box-shadow: inset 0 -3px transparent;*/
+    border-bottom: 3px solid transparent;
+    /* Avoid rounded borders under each button name */
+    border: none;
+    border-radius: 0;
+    /*
+    padding-left: 10px;
+    padding-right: 10px;
+    */
+
+    min-width: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+
+label {
+    /*color: @wb-foreground;*/
+    background: @wb-background;
+}
+
+menu label {
+    color: @wb-foreground;
+    background: @transparent;
+}
+
+/* For Media player popover menu */
+popover label {
+    background: @transparent;
+}
+popover.background {
+    color: @transparent;
+    background: @transparent;
+}
+
+.workspaces,
+.submap,
+.clock,
+.keyboard,
+/*
+.idle-inhibitor,
+.updates,
+*/
+.mpris,
+.cpu-monitor,
+.mem-monitor,
+.gpu-monitor,
+.weather-current,
+.weather-forecast,
+/*
+.network,
+*/
+.screenshot,
+/*
+ .notifications,
+ */
+.notifications-exist,
+.notifications-empty,
+.speaker,
+.microphone,
+.systray {
+    padding-right: 15px;
+    padding-left: 15px;
+    color: @wb-foreground;
+    background-color: @wb-background;
+    border-radius: 20px;
+}
+
+.idle-inhibitor,
+.updates {
+    border-radius: 20px;
+}
+
+.network-enabled {
+    padding-right: 15px;
+    padding-left: 0px;
+    color: @wb-foreground;
+}
+
+.network-disabled {
+    padding-right: 15px;
+    padding-left: 0px;
+    color: @wb-disabled;
+}
+
+
+/* Seems to be the only way to make systray-item behave */
+/*.systray-item {*/
+menubutton * {
+    padding-left: 1px;
+    padding-right: 1px;
+}
+
+
+.workspaces button {
+    padding: 0 8px;
+    background: transparent;
+    /*box-shadow: inset 0 -3px transparent;*/
+    border-bottom: 3px solid transparent;
+    color: @wb-foreground;
+}
+
+.workspaces button.empty {
+    color: @wb-background-alt;
+}
+
+
+.workspaces button.focused {
+    /*box-shadow: inset 0 -3px @wb-primary;*/
+    border-bottom: 3px solid @wb-primary;
+}
+
+/*
+.workspaces button.focused {
+    background: @wb-background-alt;
+    box-shadow: inset 0 -3px @wb-primary;
+}
+
+.workspaces label.focused {
+    background: @wb-background-alt;
+    box-shadow: inset 0 -3px @wb-primary;
+}
+*/
+.workspaces button.urgent {
+    border-top: 3px solid @wb-red;
+}
+
+.workspaces button.special {
+    border-top: 3px solid @wb-blue;
+}
+
+.submap {
+    color: @wb-primary;
+    background: @wb-background;
+    min-width: 80px;
+    padding-left: 15px;
+}
+
+.clock {
+    background: @wb-background;
+}
+
+.keyboard {
+    color: @wb-primary;
+}
+
+.idle-inhibitor > .disabled {
+    color: @wb-disabled;
+}
+
+.idle-inhibitor > .enabled {
+    color: @wb-red;
+}
+
+.updates-green {
+    color: @wb-green;
+}
+
+.updates-yellow {
+    color: @wb-primary;
+}
+
+.updates-red {
+    color: @wb-red;
+}
+
+/*
+.mpris > * {
+    padding-right: 0px;
+    color: @wb-green;
+}
+*/
+
+.mpris-playing > * {
+    padding-right: 3px;
+    padding-left: 3px;
+    color: @wb-secondary;
+    border-radius: 20px;
+}
+
+.mpris-disconnected > * {
+    padding-right: 3px;
+    padding-left: 3px;
+    color: @wb-red;
+    border-radius: 20px;
+}
+
+.mpris-stopped > * {
+    padding-right: 3px;
+    padding-left: 3px;
+    color: @wb-blue;
+    border-radius: 20px;
+}
+
+.mpris-paused > * {
+    padding-right: 3px;
+    padding-left: 3px;
+    color: @wb-blue;
+    border-radius: 20px;
+}
+
+.client {
+    color: @wb-foreground;
+}
+
+.cpu-monitor {
+    color: @wb-blue;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    padding-right: 0;
+    /* avoid moving the rest when digit changes from 1 to anything else */
+    min-width: 80px;
+}
+
+.mem-monitor {
+    color: @wb-green;
+    padding-left: 0;
+    padding-right: 0px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    min-width: 80px;
+}
+
+.gpu-monitor {
+    color: @wb-primary;
+    padding-left: 0;
+    padding-right: 10px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    min-width: 80px;
+}
+
+.gpu-monitor-gpu {
+    color: @wb-primary;
+}
+
+.gpu-monitor-mem {
+    color: @wb-alert;
+}
+
+.speaker {
+    padding-left: 0;
+    padding-right: 0;
+    min-width: 60px;
+}
+
+.microphone {
+    padding-left: 0;
+    min-width: 60px;
+}
+
+.weather-current {
+    color: @wb-foreground;
+}
+
+.weather-forecast {
+    color: @wb-disabled;
+}
+
+/* Calendar highlighting */
+.calendar {
+    color: @wb-background;
+    background: @wb-foreground;
+    /*border: 2px solid #1a1af0;*/
+    border: 2px solid #4060c2;
+}
+
+.calendar .calendar-header {
+    background: transparent;
+}
+
+.calendar .prev, .calendar .prev > * {
+    color: #000000;
+    background: transparent;
+}
+
+.calendar .next, .calendar .next > * {
+    color: #000000;
+    background: transparent;
+}
+
+.calendar .year-title {
+    background: transparent;
+}
+
+.calendar .year-title > * {
+    color: #909090;
+    background: transparent;
+}
+
+.calendar .year-title-current {
+    background: transparent;
+}
+
+.calendar .months-container {
+    /*background: #F0F0F0;*/
+    /*background: @wb-foreground;*/
+    background: #ffffff;
+}
+
+.calendar .month-container {
+    background: #f0f0f0;
+    /*border: 1px solid #1a1af0;*/
+    border: 1px solid #4060c2;
+}
+
+.calendar .month-title {
+    color: #4060c2;
+    background: #e0e0e0;
+}
+
+.calendar .week-number {
+    background: @wb-background;
+}
+
+.calendar .day-header {
+    background: #c0c0c0;
+}
+
+.calendar .day-names {
+    background: transparent;
+}
+
+.calendar .day-old {
+    background: transparent;
+}
+
+.calendar .day-new {
+    background: transparent;
+}
+
+.calendar .day-weekday {
+    background: transparent;
+}
+
+.calendar .day-saturday {
+    color: #9AA5B2;
+    background: transparent;
+}
+
+.calendar .day-sunday {
+    color: #FB3C34;
+    background: transparent;
+}
+
+.calendar .day-holiday {
+    color: #FB3C34;
+    background: transparent;
+}
+
+.calendar .day-anniversary {
+    background: @wb-blue;
+}
+
+.calendar .day-birthday {
+    background: @wb-primary;
+}
+
+.calendar .day-today {
+    background: @wb-red;
+}
+
+/* This is the container box */
+.notifications {
+    padding-right: 0px;
+    padding-left: 0px;
+    min-width: 30px;
+/*    color: @wb-foreground;*/
+    color: transparent;
+    background: transparent;
+}
+
+.notifications-popup {
+    padding-right: 0px;
+    padding-left: 0px;
+    min-width: 30px;
+/*    color: @wb-foreground;*/
+    color: transparent;
+    background: transparent;
+}
+
+
+.notifications-exist {
+    color: @wb-primary;
+}
+
+.notifications-empty {
+    color: @wb-disabled;
+}
+
+window.notifications-window-popup {
+/*    padding: .5em;*/
+    color: transparent;
+    background: transparent;
+}
+
+window.notifications-window {
+/*    padding: .5em;*/
+    color: transparent;
+    background: transparent;
+}
+
+.icon {
+    min-width: 68px;
+    min-height: 68px;
+    margin-right: 1em;
+    color: @wb-foreground;
+}
+
+.icon image {
+    font-size: 58px;
+    /* to center the icon */
+    margin: 5px;
+    color: @wb-foreground;
+}
+
+.icon box {
+    min-width: 68px;
+    min-height: 68px;
+    border-radius: 7px;
+}
+
+.notification-low {
+    min-width: 350px;
+    border-radius: 11px;
+    padding: 1em;
+    margin: .5em;
+    border: 1px solid @wb-blue;
+    background-color: @wb-background;
+}
+
+.notification-normal {
+    min-width: 350px;
+    border-radius: 11px;
+    padding: 1em;
+    margin: .5em;
+    border: 1px solid @wb-blue;
+    background-color: @wb-background;
+}
+
+.notification-critical {
+    min-width: 350px;
+    border-radius: 11px;
+    padding: 1em;
+    margin: .5em;
+    border: 1px solid lightcoral;
+    background-color: @wb-background;
+}
+
+.notification-date {
+    color: @wb-primary;
+    /*font-size: 1.4em;*/
+    font-weight: lighter;
+}
+
+.notification-title {
+    color: @wb-foreground;
+    font-size: 1.4em;
+}
+
+.notification-body {
+    color: @wb-secondary;
+}
+
+.actions .action-button {
+    margin: 0 .4em;
+    margin-top: .8em;
+}
+
+.actions .action-button:first-child {
+    margin-left: 0;
+}
+
+.actions .action-button:last-child {
+    margin-right: 0;
+}
+
+/* Weather window CSS */
+.weather {
+  background-color: @wb-background;
+  border-radius: 10px;
+/*  border: 2px solid @wb-blue;*/
+}
+
+.weather-notebook-tab {
+    background-color: @wb-background-alt;
+}
+
+.weather-day {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+}
+
+.weather-day-name {
+  background: #4070b0;
+}
+
+.weather-hour {
+  /*border: 1px solid @wb-blue;*/
+  padding: 1px;
+  min-width: 36px;
+}
+
+.weather-hour label {
+    color: @wb-foreground;
+    background-color: @wb-background;
+}
+
+.weather-precipitation-bar block {
+  background-color: @wb-background-alt;
+}
+.weather-precipitation-bar block.low {
+  background-color: @wb-green;
+}
+.weather-precipitation-bar block.high {
+  background-color: @wb-primary;
+}
+.weather-precipitation-bar block.full {
+  background-color: @wb-red;
+}
+
+.weather-icon {
+  font-size: 36px;
+}
+
+levelbar block,
+highlight {
+    min-height: 10px;
+}
+
+.scroller {
+    color: @wb-primary;
+    background: @wb-background;
+    min-width: 60px;
+    padding-left: 15px;
+    border-radius: 20px;
+}
+
+.trails {
+    color: @wb-green;
+    background: @wb-background;
+}
+
+.scroller-mode {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  border-radius: 20px;
+}
+.scroller-overview {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  border-radius: 20px;
+}
+.scroller-trailmark {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  border-radius: 20px;
+}
+
+.scroller-mark {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  border-radius: 20px;
+}
+
+.scroller-trail {
+  color: @wb-green;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  border-radius: 20px;
+}
+

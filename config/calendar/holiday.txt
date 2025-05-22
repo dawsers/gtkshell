@@ -1,0 +1,10 @@
+1900,01,01,1,0,New Year's Day
+1900,01,10,1,0,Armed Forces Day
+2025,03,26,0,0,Martyr's Day
+2025,03,30,0,0,Korite
+2025,04,21,0,0,Easter Monday
+1900,05,01,1,0,Labour Day
+1900,05,25,1,0,Africa Day
+2025,06,07,0,0,Tabaski
+1900,09,22,1,0,Independence Day
+1900,12,25,1,0,Christmas Day
