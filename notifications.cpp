@@ -32,7 +32,7 @@ Notification::Notification(const Glib::ustring &app_name, uint32_t id, const Gli
 {
     time = Glib::DateTime::create_now_local().to_unix();
     for (size_t i = 0; i < actions.size(); i += 2) {
-        this->actions.push_back({actions[i * 2], actions[i * 2 + 1]});
+        this->actions.push_back({actions[i], actions[i + 1]});
     }
 
     // Hints we want to keep
