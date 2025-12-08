@@ -69,11 +69,15 @@ ScrollIpc::~ScrollIpc() {
 }
 
 const std::string ScrollIpc::get_socket_path() const {
-    const char *env = getenv("SCROLLSOCK");
+    char *env = getenv("SCROLLSOCK");
     if (env != nullptr) {
         return std::string(env);
     }
-    throw std::runtime_error("Scroll: SCROLLSOCK variable is empty");
+    env = getenv("SWAYSOCK");
+    if (env != nullptr) {
+        return std::string(env);
+    }
+    throw std::runtime_error("Scroll: SCROLLSOCK/SWAYSOCK variables are empty");
     return "";
 }
 
@@ -334,7 +338,9 @@ void ScrollKeyboardLayout::on_cmd(const ScrollIpcResponse &data) {
         json json_inputs = json::parse(data.payload);
         for (auto input : json_inputs) {
             if (input["type"].get<std::string>() == "keyboard") {
-                this->set_text(input["xkb_active_layout_name"].get<std::string>());
+                if (input.contains("xkb_active_layout_name")) {
+                    this->set_text(input["xkb_active_layout_name"].get<std::string>());
+                }
             }
         }
     }
