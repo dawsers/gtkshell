@@ -403,7 +403,13 @@ void Weather::update_task()
         auto om_data = Utils::fetch(url);
         json om_result;
         if (om_data.size() > 0) {
-            om_result = json::parse(om_data);
+            try {
+                om_result = json::parse(om_data);
+            } catch (const json::parse_error& e) {
+                Utils::log(Utils::LogSeverity::WARNING, "Weather: Open-Meteo server returned an error");
+                working = false;
+                return;
+            }
         }
 
         mtx.lock();

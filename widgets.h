@@ -12,6 +12,7 @@
 #include "mpris.h"
 
 #include <thread>
+#include <mutex>
 
 class PackageUpdates : public Gtk::Button {
 public:

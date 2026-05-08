@@ -42,7 +42,7 @@ Wireplumber &Wireplumber::get_instance()
 
 void Wireplumber::plugin_activated(WpObject *obj, GAsyncResult *result, Wireplumber *self)
 {
-    GError *error = NULL;
+    GError *error = nullptr;
     wp_object_activate_finish(obj, result, &error);
     if (error) {
         Utils::log(Utils::LogSeverity::ERROR, std::format("Wireplumber: failed to activate component {}", error->message));
@@ -52,13 +52,13 @@ void Wireplumber::plugin_activated(WpObject *obj, GAsyncResult *result, Wireplum
     if (--self->pending_plugins == 0) {
         self->defaults = wp_plugin_find(self->core, "default-nodes-api");
         self->mixer = wp_plugin_find(self->core, "mixer-api");
-        //g_object_set(self->mixer, "scale", self->scale, NULL);
+        //g_object_set(self->mixer, "scale", self->scale, nullptr);
         wp_core_install_object_manager(self->core, self->obj_manager);
     }
 }
 
 void Wireplumber::plugin_loaded(WpObject *obj, GAsyncResult *result, Wireplumber *self) {
-    GError *error = NULL;
+    GError *error = nullptr;
     wp_core_load_component_finish(self->core, result, &error);
     if (error) {
         Utils::log(Utils::LogSeverity::ERROR, std::format("Wireplumber: failed to load component {}", error->message));
@@ -92,7 +92,7 @@ void Wireplumber::default_changed(Wireplumber *self)
             WpNode *node = WP_NODE(object);
             WpPipewireObject *pobject = WP_PIPEWIRE_OBJECT(node);
             const gchar *dev = wp_pipewire_object_get_property(WP_PIPEWIRE_OBJECT(node), "object.id");
-            if (dev != NULL) {
+            if (dev != nullptr) {
                 // There is a bug in the defaults plugin that returns the same id for the default Audio/Sink and Audio/Source
                 // because their device is the same, despite their node being different
                 int32_t device_id = std::atoi(dev);
@@ -122,6 +122,9 @@ void Wireplumber::mixer_changed(Wireplumber *self)
 
 void Wireplumber::update_volume(Wireplumber *self, AudioDevice *device)
 {
+    if (device->name == nullptr) {
+        return;
+    }
     GVariant *variant = nullptr;
 
     g_signal_emit_by_name(self->mixer, "get-volume", device->id, &variant);

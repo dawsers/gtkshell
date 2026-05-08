@@ -7,6 +7,7 @@
 #include <gtkmm/popover.h>
 
 #include <thread>
+#include <mutex>
 
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;

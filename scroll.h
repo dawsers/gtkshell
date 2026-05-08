@@ -16,6 +16,7 @@ using json = nlohmann::json;
 
 #include <cstdint>
 #include <thread>
+#include <mutex>
 
 #define event_mask(ev) (1u << (ev & 0x7F))
 
